@@ -1,1 +1,1 @@
-# course_react2
+# Burger Builder - Redux version
