@@ -9,8 +9,6 @@ import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-console.log('Vadim blyat');
-
 class Auth extends Component {
   state = {
     controls: {
