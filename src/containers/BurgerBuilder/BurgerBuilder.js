@@ -10,7 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
 import * as actions from '../../store/actions/index';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
   // constructor(props) {
   //     super(props);
   //     this.state = {...}
@@ -21,8 +21,9 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
-    this.props.onInitIngredients();
+    if (!this.props.isBuilding) {
+      this.props.onInitIngredients();
+    }
   }
 
   updatePurchaseState(ingredients) {
@@ -114,7 +115,8 @@ const mapStateToProps = state => {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     error: state.burgerBuilder.error,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    isBuilding: state.burgerBuilder.building
   };
 };
 
