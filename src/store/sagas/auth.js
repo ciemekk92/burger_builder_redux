@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import * as actions from '../actions/index';
 
+const API_KEY = process.env.REACT_APP_BURGER_API_KEY;
+
 export function* logoutSaga(action) {
   yield call([localStorage, 'removeItem'], 'token');
   yield call([localStorage, 'removeItem'], 'expirationDate');
@@ -22,11 +24,9 @@ export function* authUserSaga(action) {
     password: action.password,
     returnSecureToken: true
   };
-  let url =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDFJYeUCD7QXAp9yBNEK9uJzSNSh5ApWG8';
+  let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
   if (!action.isSignup) {
-    url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDFJYeUCD7QXAp9yBNEK9uJzSNSh5ApWG8';
+    url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
   }
   try {
     const response = yield axios.post(url, authData);

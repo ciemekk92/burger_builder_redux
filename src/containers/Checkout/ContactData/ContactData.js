@@ -73,7 +73,8 @@ const ContactData = props => {
       },
       value: '',
       validation: {
-        required: true
+        required: true,
+        isEmail: true
       },
       valid: false,
       touched: false
